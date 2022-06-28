@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileShopApp.Views.Admin.Add_Category"
+             Title="New Category">
+    <ContentPage.Content>
+        <StackLayout Padding="24">
+            <Image x:Name="PreviewPic" Source="image_picker.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <Entry x:Name="txtCatName" Placeholder="Category Name" Keyboard="Chat"/>
+            <Entry x:Name="txtDetails" Placeholder="Category Details" Keyboard="Chat"/>
+            <Button Text="Add Category" x:Name="btnCat" Clicked="btnCat_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
