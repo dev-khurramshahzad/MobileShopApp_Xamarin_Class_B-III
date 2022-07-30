@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MobileShopApp.LoginSystem
+namespace MobileShopApp.Views.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UsersList : ContentPage
+    public partial class Manage_Category : ContentPage
     {
-        public UsersList()
+        public Manage_Category()
         {
             InitializeComponent();
 
@@ -42,13 +42,12 @@ namespace MobileShopApp.LoginSystem
 
         async void LoadData()
         {
-            DataList.ItemsSource = (await App.firebaseDatabase.Child("Users").OnceAsync<Users>()).Select(x => new Users
+            DataList.ItemsSource = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).Select(x => new Categories
             {
-                UserId = x.Object.UserId,
+                CatID = x.Object.CatID,
                 Name = x.Object.Name,
-                Email = x.Object.Email,
-                Password = x.Object.Password,
-                Phone = x.Object.Phone
+                Details = x.Object.Details,
+                Image = x.Object.Image,
 
             }).ToList();
         }
@@ -58,23 +57,17 @@ namespace MobileShopApp.LoginSystem
 
         private async void DataList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var selected = e.Item as Users;
+            var selected = e.Item as Categories;
 
-            var item = (await App.firebaseDatabase.Child("Users").OnceAsync<Users>()).FirstOrDefault(a => a.Object.UserId == selected.UserId);
+            var item = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).FirstOrDefault(a => a.Object.CatID == selected.CatID);
 
             var choice = await DisplayActionSheet("Options", "Close", "Delete", "View", "Edit", "Favorite", "Archieved");
 
             if (choice == "View")
             {
-                //await DisplayAlert("Details", "" +
-                //    "\nUser ID : " + item.Object.UserId +
-                //    "\nName : " + item.Object.Name +
-                //    "\nEmail : " + item.Object.Email +
-                //    "\nPhone : " + item.Object.Phone +
-                //    "\nPassword : *******" +
-                //    "", "OK");
+                
 
-                await Navigation.PushAsync(new UserProfile(selected));
+                await Navigation.PushAsync(new CategoryDetails(selected));
 
             }
             if (choice == "Delete")
@@ -82,7 +75,7 @@ namespace MobileShopApp.LoginSystem
                 var q = await DisplayAlert("Confirmation", "Are you sure you want to delete " + item.Object.Name, "Yes", "No");
                 if (q)
                 {
-                    await App.firebaseDatabase.Child("Users").Child(item.Key).DeleteAsync();
+                    await App.firebaseDatabase.Child("Categories").Child(item.Key).DeleteAsync();
                     LoadData();
 
                     await DisplayAlert("Confirmation", item.Object.Name + " Deleted Permanently", "OK");

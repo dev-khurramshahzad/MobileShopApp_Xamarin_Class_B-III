@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MobileShopApp.Models
 {
-    internal class Users
+    public class Users
     {
         [PrimaryKey,AutoIncrement]
         public int UserId { get; set; }

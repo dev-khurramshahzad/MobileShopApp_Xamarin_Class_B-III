@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileShopApp.Views.Customer.CategoriesList"
+             Title="Categories">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="24">
+            <ListView x:Name="DataList" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout Padding="8">
+                                <Grid>
+                                    <Image WidthRequest="200" HeightRequest="200" HorizontalOptions="FillAndExpand"  Source="{Binding Image}"/>
+                                </Grid>
+                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Name}" />
+                            </StackLayout>
+                        </ViewCell>
+
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

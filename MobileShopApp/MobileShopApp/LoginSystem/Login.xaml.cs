@@ -1,4 +1,5 @@
 ﻿using MobileShopApp.Models;
+using MobileShopApp.Views.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace MobileShopApp.LoginSystem
                 }
                 else
                 {
-                    await Navigation.PushAsync(new UsersList());
+                    App.Current.MainPage = new AdminSideBar();
                 }
 
             }

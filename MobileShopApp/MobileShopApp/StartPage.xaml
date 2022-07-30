@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileShopApp.StartPage" BackgroundColor="#E91E9D">
+             xmlns:helpers="clr-namespace:MobileShopApp.Helpers"
+             x:Class="MobileShopApp.StartPage" BackgroundColor="{StaticResource Primary}">
     <ContentPage.Content>
         <StackLayout Padding="24" VerticalOptions="CenterAndExpand">
             <Image Source="ic_zp_gen_white.png" />
-            <Label HorizontalOptions="CenterAndExpand" FontSize="48" TextColor="White" Text="Zeitplan" />
-            <Label HorizontalOptions="CenterAndExpand" FontSize="18" TextColor="White" Text="A complete timetable solution" Margin="0, 0, 0, 200"/>
+            <Label HorizontalOptions="CenterAndExpand" FontSize="48" TextColor="White" Text="Mobile Shop" />
+            <Label HorizontalOptions="CenterAndExpand" FontSize="18" TextColor="White" Text="All of the products are one tap Away" Margin="0, 0, 0, 200"/>
 
-            <Button Text="Get Started" BorderWidth="4" BorderColor="White" CornerRadius="12" BackgroundColor="#E91E9D" TextColor="White" x:Name="btnGetStarted" Clicked="btnGetStarted_Clicked" />
+            <Button Text="Get Started" BorderWidth="4" BorderColor="White" CornerRadius="12" BackgroundColor="{StaticResource Primary}" TextColor="White" x:Name="btnGetStarted" Clicked="btnGetStarted_Clicked" />
+
+          
+
+
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Label  TextColor="White" Text="Admin" >
@@ -19,7 +24,7 @@
 
                 <Label TextColor="White" Text=" | "/>
 
-                <Label  TextColor="White" Text="Teacher" >
+                <Label  TextColor="White" Text="Deliver Boy" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                     </Label.GestureRecognizers>
@@ -27,14 +32,6 @@
 
                 <Label TextColor="White" Text=" | "/>
 
-
-                <Label  TextColor="White" Text="Student" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <Label TextColor="White" Text=" | "/>
 
 
                 <Label  TextColor="White" Text="Reset Defaults" >

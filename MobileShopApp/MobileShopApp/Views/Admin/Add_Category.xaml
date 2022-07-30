@@ -13,6 +13,9 @@
             
             <Entry x:Name="txtCatName" Placeholder="Category Name" Keyboard="Chat"/>
             <Entry x:Name="txtDetails" Placeholder="Category Details" Keyboard="Chat"/>
+
+            <ActivityIndicator x:Name="LoadingInd" IsRunning="False" />
+
             <Button Text="Add Category" x:Name="btnCat" Clicked="btnCat_Clicked" />
         </StackLayout>
     </ContentPage.Content>

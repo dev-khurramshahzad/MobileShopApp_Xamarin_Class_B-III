@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileShopApp.Views.Admin.UserProfile"
+             BackgroundColor="PowderBlue"
+             Title="User Profile">
+    <ContentPage.Content>
+        <StackLayout Padding="24">
+            <Grid ColumnDefinitions="150*,400*" RowDefinitions="*,*,*,*,*">
+                <Label Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="LightGreen" Text="User Profile"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" BackgroundColor="LightGreen" Text="User ID"/>
+                <Label  Grid.Row="1" Grid.Column="1" BackgroundColor="LightPink" x:Name="lblID" Text="US0001-24"/>
+
+                <Label Grid.Row="2" Grid.Column="0" BackgroundColor="LightGreen"  Text="User Name"/>
+                <Label Grid.Row="2" Grid.Column="1" BackgroundColor="LightPink" x:Name="lblName" Text="Khurram Shahzad"/>
+
+
+                <Label Grid.Row="3" Grid.Column="0" BackgroundColor="LightGreen" Text="Email"/>
+                <Label Grid.Row="3" Grid.Column="1" BackgroundColor="LightPink" x:Name="lblEmail" Text="Khurram Shahzad"/>
+
+                <Label Grid.Row="4" Grid.Column="0" BackgroundColor="LightGreen" Text="Phone"/>
+                <Label Grid.Row="4" Grid.Column="1" BackgroundColor="LightPink" x:Name="lblPhone" Text="Khurram Shahzad"/>
+
+                <Label Grid.Row="5" Grid.Column="0" BackgroundColor="LightGreen" Text="Password"/>
+                <Label Grid.Row="5" Grid.Column="1" BackgroundColor="LightPink" Text="********"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

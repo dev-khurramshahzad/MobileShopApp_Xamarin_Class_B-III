@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MobileShopApp.Models
 {
-    internal class Categories
+    public class Categories
     {
         [PrimaryKey,AutoIncrement]
         public int CatID { get; set; }

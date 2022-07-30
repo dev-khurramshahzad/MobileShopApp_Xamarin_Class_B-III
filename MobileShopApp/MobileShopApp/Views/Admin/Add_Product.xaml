@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileShopApp.Views.Admin.Add_Product"
+             Title="New Category">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Padding="24">
+                <Image x:Name="PreviewPic" Source="image_picker.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Entry x:Name="txtProductName" Placeholder="Product Name" Keyboard="Chat"/>
+                <Picker Title="--Select Category" x:Name="ddlCat" />
+                <Entry x:Name="txtProductRating" Placeholder="Product Rating" Keyboard="Numeric"/>
+                <Entry x:Name="txtProductSalePrice" Placeholder="Product Sale Price" Keyboard="Numeric"/>
+                <Entry x:Name="txtProductPurchasePrice" Placeholder="Product Purchase Price" Keyboard="Numeric"/>
+                <Entry x:Name="txtProductQty" Placeholder="Product Qantity" Keyboard="Numeric"/>
+                <Picker Title="--Select Status" x:Name="ddlStatus">
+                    <Picker.Items>
+                        <x:String>Available</x:String>
+                        <x:String>Not Available</x:String>
+                        <x:String>Short</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Entry x:Name="txtProductDetails" Placeholder="Category Details" Keyboard="Chat"/>
+
+                <ActivityIndicator x:Name="LoadingInd" IsRunning="False" />
+
+                <Button Text="Add Product" x:Name="btnCat" Clicked="btnCat_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileShopApp.Views.Admin.CategoryDetails"
+             Title="Catergory Details">
+    <ContentPage.Content>
+        <ScrollView Orientation="Both">
+            <StackLayout Padding="24" VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" >
+                <Image WidthRequest="300" x:Name="CatImage"></Image>
+                <Grid ColumnDefinitions="200*,700*" RowDefinitions="30,30,50">
+                    <Label  Grid.Row="0" Grid.Column="0" Text="Cat ID : " />
+                    <Label Grid.Row="1" Grid.Column="0" Text="Cat Name: " />
+                    <Label Grid.Row="2" Grid.Column="0" Text="Details : " />
+
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="CatID" />
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="CatName" />
+                    <Label Grid.Row="2" Grid.Column="1" x:Name="CatDetails" />
+                </Grid>
+                
+              
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
