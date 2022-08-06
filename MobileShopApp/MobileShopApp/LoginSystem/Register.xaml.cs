@@ -40,15 +40,7 @@ namespace MobileShopApp.LoginSystem
                     return;
                 }
 
-                //App.db.CreateTable<Users>();
-                //var check = App.db.Table<Users>().FirstOrDefault(x => x.Email == txtEmail.Text);
-
-                //if (check != null)
-                //{
-                //    await DisplayAlert("Error", "This email is already registerd", "OK");
-                //    return;
-                //}
-
+              
                 LoadingInd.IsRunning = true;
 
 
@@ -69,6 +61,8 @@ namespace MobileShopApp.LoginSystem
                     Email = txtEmail.Text,
                     Password = txtPassword.Text,
                     Phone = txtPhone.Text,
+                    Address = txtAddress.Text,
+                    UserType = "User"
 
                 };
 

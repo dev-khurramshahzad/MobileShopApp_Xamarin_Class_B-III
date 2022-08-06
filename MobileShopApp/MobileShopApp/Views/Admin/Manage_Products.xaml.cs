@@ -13,9 +13,9 @@ using Xamarin.Forms.Xaml;
 namespace MobileShopApp.Views.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Manage_Category : ContentPage
+    public partial class Manage_Products : ContentPage
     {
-        public Manage_Category()
+        public Manage_Products()
         {
             InitializeComponent();
 
@@ -42,12 +42,19 @@ namespace MobileShopApp.Views.Admin
 
         async void LoadData()
         {
-            DataList.ItemsSource = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).Select(x => new Categories
+            DataList.ItemsSource = (await App.firebaseDatabase.Child("Items").OnceAsync<Items>()).Select(x => new Items
             {
-                CatID = x.Object.CatID,
-                Name = x.Object.Name,
-                Details = x.Object.Details,
-                Image = x.Object.Image,
+                ItemID = x.Object.ItemID,
+                CatFID = x.Object.CatFID,
+                ItemImage = x.Object.ItemImage,
+                ItemDetail = x.Object.ItemDetail,
+                ItemName = x.Object.ItemName,
+                ItemStatus = x.Object.ItemStatus,
+                PPrice = x.Object.PPrice,
+                Quantity = x.Object.Quantity,
+                Rating = x.Object.Rating,
+                SPrice = x.Object.SPrice,
+
 
             }).ToList();
         }
@@ -57,31 +64,31 @@ namespace MobileShopApp.Views.Admin
 
         private async void DataList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var selected = e.Item as Categories;
+            var selected = e.Item as Items;
 
-            var item = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).FirstOrDefault(a => a.Object.CatID == selected.CatID);
+            var item = (await App.firebaseDatabase.Child("Items").OnceAsync<Items>()).FirstOrDefault(a => a.Object.ItemID == selected.ItemID);
 
             var choice = await DisplayActionSheet("Options", "Close", "Delete", "View", "Edit", "Favorite", "Archieved");
 
             if (choice == "View")
             {
-                await Navigation.PushAsync(new CategoryDetails(selected));
+                //await Navigation.PushAsync(new CategoryDetails(selected));
             }
             if (choice == "Delete")
             {
-                var q = await DisplayAlert("Confirmation", "Are you sure you want to delete " + item.Object.Name, "Yes", "No");
+                var q = await DisplayAlert("Confirmation", "Are you sure you want to delete " + item.Object.ItemName, "Yes", "No");
                 if (q)
                 {
-                    await App.firebaseDatabase.Child("Categories").Child(item.Key).DeleteAsync();
+                    await App.firebaseDatabase.Child("Items").Child(item.Key).DeleteAsync();
                     LoadData();
 
-                    await DisplayAlert("Confirmation", item.Object.Name + " Deleted Permanently", "OK");
+                    await DisplayAlert("Confirmation", item.Object.ItemName + " Deleted Permanently", "OK");
                 }
 
             }
             if (choice == "Edit")
             {
-                await Navigation.PushAsync(new Edit_Category(selected));
+               // await Navigation.PushAsync(new Edit_Category(selected));
 
             }
 

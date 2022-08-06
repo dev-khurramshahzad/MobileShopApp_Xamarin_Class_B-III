@@ -37,7 +37,7 @@ namespace MobileShopApp.Views.Admin
                     new AdminSideBarFlyoutMenuItem { Id = 1, Icon="icon_feed.png", Title = "Add Category", TargetType = typeof(Add_Category) },
                     new AdminSideBarFlyoutMenuItem { Id = 2,Icon="icon_feed.png", Title = "Manage Category", TargetType = typeof(Manage_Category) },
                     new AdminSideBarFlyoutMenuItem { Id = 3, Icon="icon_feed.png", Title = "Add Product", TargetType = typeof(Add_Product) },
-                    new AdminSideBarFlyoutMenuItem { Id = 3, Icon="icon_feed.png", Title = "Manage Products", TargetType = typeof(Add_Product) },
+                    new AdminSideBarFlyoutMenuItem { Id = 3, Icon="icon_feed.png", Title = "Manage Products", TargetType = typeof(Manage_Products) },
 
                 });
             }

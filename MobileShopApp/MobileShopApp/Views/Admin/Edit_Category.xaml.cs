@@ -14,31 +14,24 @@ using Xamarin.Forms.Xaml;
 namespace MobileShopApp.Views.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Add_Product : ContentPage
+    public partial class Edit_Category : ContentPage
     {
         private MediaFile _mediaFile;
         public static string PicPath = "image_picker.png";
-        public Add_Product()
+        public static Categories cat = null;
+
+        public static bool IsNewPicSelected = false;
+
+        public Edit_Category(Categories c)
         {
             InitializeComponent();
-            LoadData();
 
-            ddlCat.SelectedIndex = 3;
+            cat = c;
+
+            txtCatName.Text = c.Name;
+            txtDetails.Text = c.Details;
+            PreviewPic.Source = c.Image;
         }
-        
-        async void LoadData()
-        {
-            var firebaseList = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).Select(x => new Categories
-            {
-                Name = x.Object.Name,
-            }).ToList();
-
-
-            var refinedList = firebaseList.Select(x => x.Name).ToList();
-            ddlCat.ItemsSource = refinedList;
-
-        }
-
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -104,6 +97,8 @@ namespace MobileShopApp.Views.Admin
 
 
                 }
+
+                IsNewPicSelected = true;
             }
             catch (Exception ex)
             {
@@ -117,84 +112,44 @@ namespace MobileShopApp.Views.Admin
             try
             {
 
-                if (string.IsNullOrEmpty(txtProductName.Text) || string.IsNullOrEmpty(txtProductSalePrice.Text))
+
+                if (string.IsNullOrEmpty(txtCatName.Text) || string.IsNullOrEmpty(txtDetails.Text))
                 {
                     await DisplayAlert("Error", "Please fill all required fields and try again", "OK");
                     return;
                 }
 
-                if (ddlStatus.SelectedItem == null)
-                {
-                    await DisplayAlert("Error", "Please select product status  and try again", "OK");
-                    return;
-                }
 
-                if (ddlCat.SelectedItem == null)
-                {
-                    await DisplayAlert("Error", "Please select product category  and try again", "OK");
-                    return;
-                }
-
-
-                var check = (await App.firebaseDatabase.Child("Items").OnceAsync<Items>()).FirstOrDefault(x => x.Object.ItemName == txtProductName.Text);
-
-                if (check != null)
-                {
-                    await DisplayAlert("Error", check.Object.ItemName + " is already exsits", "OK");
-                    return;
-                }
 
                 LoadingInd.IsRunning = true;
 
+                string img = cat.Image;
 
-                int LastID, NewID = 1;
-
-                var LastRecord = (await App.firebaseDatabase.Child("Items").OnceAsync<Items>()).FirstOrDefault();
-                if (LastRecord != null)
+                if (IsNewPicSelected == true)
                 {
-                    LastID = (await App.firebaseDatabase.Child("Items").OnceAsync<Items>()).Max(a => a.Object.ItemID);
-                    NewID = ++LastID;
+                    var StoredImageURL = await App.FirebaseStorage
+                  .Child("CatImages")
+                  .Child(cat.CatID.ToString() + "_" + txtCatName.Text + ".jpg")
+                  .PutAsync(_mediaFile.GetStream());
+
+                    img = StoredImageURL;
                 }
 
-                List<Categories> cats = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).Select(x => new Categories
-                {
-                    CatID = x.Object.CatID,
-                    Name = x.Object.Name,
-                }).ToList();
+                var oldCat = (await App.firebaseDatabase.Child("Categories").OnceAsync<Categories>()).FirstOrDefault(x => x.Object.CatID == cat.CatID);
 
-                int selected = cats[ddlCat.SelectedIndex].CatID;
+                oldCat.Object.CatID = cat.CatID;
+                oldCat.Object.Name = txtCatName.Text;
+                oldCat.Object.Details = txtDetails.Text;
+                oldCat.Object.Image = img;
+               
 
-
-
-                var StoredImageURL = await App.FirebaseStorage
-                .Child("ItemImages")
-                .Child(NewID.ToString() + "_" + txtProductName.Text + ".jpg")
-                .PutAsync(_mediaFile.GetStream());
-
-
-
-                Items c = new Items()
-                {
-                    ItemID = NewID,
-                    ItemName = txtProductName.Text,
-                    ItemStatus = ddlStatus.SelectedItem.ToString(),
-                    PPrice = float.Parse(txtProductPurchasePrice.Text),
-                    Quantity = int.Parse(txtProductQty.Text),
-                    CatFID = selected,
-                    SPrice = float.Parse(txtProductSalePrice.Text),
-                    Rating = txtProductRating.Text,
-                    ItemDetail = txtProductDetails.Text,
-                    ItemImage = StoredImageURL
-
-
-                };
-
-                await App.firebaseDatabase.Child("Items").PostAsync(c);
+                await App.firebaseDatabase.Child("Categories").Child(oldCat.Key).PutAsync(oldCat.Object);
 
                 LoadingInd.IsRunning = false;
 
+                await DisplayAlert("Success", "Category Updated", "OK");
 
-                await DisplayAlert("Success", "Category Added", "OK");
+                await Navigation.PopAsync();
             }
             catch (Exception ex)
             {

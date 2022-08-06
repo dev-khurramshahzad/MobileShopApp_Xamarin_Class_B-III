@@ -35,6 +35,12 @@ namespace MobileShopApp.Views.Customer
         {
 
         }
+
+        private void DataList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = (Categories)e.Item;
+            Navigation.PushAsync(new Items(item.CatID));
+        }
     }
 
 

@@ -8,15 +8,15 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="24">
-            <ListView x:Name="DataList" HasUnevenRows="True">
+            <ListView x:Name="DataList" HasUnevenRows="True" ItemTapped="DataList_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
                             <StackLayout Padding="8">
                                 <Grid>
                                     <Image WidthRequest="200" HeightRequest="200" HorizontalOptions="FillAndExpand"  Source="{Binding Image}"/>
+                                    <Label BackgroundColor="Black" TextColor="White" FontSize="Large" HorizontalOptions="CenterAndExpand" Padding="12" VerticalOptions="CenterAndExpand" Text="{Binding Name}" />
                                 </Grid>
-                                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Name}" />
                             </StackLayout>
                         </ViewCell>
 

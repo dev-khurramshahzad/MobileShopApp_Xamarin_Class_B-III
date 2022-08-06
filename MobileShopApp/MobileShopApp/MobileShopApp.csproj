@@ -9,17 +9,32 @@
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />  
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2515" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Admin\Edit_Category.xaml.cs">
+      <DependentUpon>Edit_Category.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Admin\Add_Product.xaml.cs">
       <DependentUpon>Add_Product.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Admin\CategoryDetails.xaml.cs">
       <DependentUpon>CategoryDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Admin\Login.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Admin\Manage_Products.xaml.cs">
+      <DependentUpon>Manage_Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Customer\OrderConfirmation.xaml.cs">
+      <DependentUpon>OrderConfirmation.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -48,7 +63,23 @@
     <EmbeddedResource Update="Views\Admin\CategoryDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Admin\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Customer\CartPageControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Customer\CategoriesList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Customer\ConfirmOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Customer\ForgotPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Customer\Items.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Customer\UserHome.xaml">

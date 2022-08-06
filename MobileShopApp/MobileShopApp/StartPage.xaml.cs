@@ -23,7 +23,7 @@ namespace MobileShopApp
 
         private void btnGetStarted_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new UserSidebar();
+            App.Current.MainPage = new  NavigationPage(new Login());
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

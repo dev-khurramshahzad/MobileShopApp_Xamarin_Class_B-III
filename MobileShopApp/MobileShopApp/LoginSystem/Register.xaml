@@ -8,6 +8,7 @@
             <Entry IsTextPredictionEnabled="True" Keyboard="Chat"  Placeholder="Name" x:Name="txtName" />
             <Entry Keyboard="Numeric" Placeholder="Phone" x:Name="txtPhone" />
             <Entry Keyboard="Email" Placeholder="Email" x:Name="txtEmail" />
+            <Entry Keyboard="Email" Placeholder="Address" x:Name="txtAddress" />
             <Entry IsPassword="True" Placeholder="Password" x:Name="txtPassword" />
             <Entry  IsPassword="True" Placeholder="Confirm Password" x:Name="txtCPassword" />
 

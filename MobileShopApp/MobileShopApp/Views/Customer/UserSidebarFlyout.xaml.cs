@@ -36,7 +36,7 @@ namespace MobileShopApp.Views.Customer
                {
                     new UserSidebarFlyoutMenuItem { Id = 0, Icon="icon_feed.png", Title = "Home", TargetType = typeof(UserHome) },
                     new UserSidebarFlyoutMenuItem { Id = 1, Icon="icon_feed.png", Title = "View Categories", TargetType = typeof(CategoriesList) },
-                    new UserSidebarFlyoutMenuItem { Id = 2, Icon="icon_feed.png", Title = "View Products", TargetType = typeof(UserHome) },
+                    new UserSidebarFlyoutMenuItem { Id = 2, Icon="icon_feed.png", Title = "View Products", TargetType = typeof(Items) },
                     new UserSidebarFlyoutMenuItem { Id = 3, Icon="icon_feed.png", Title = "About", TargetType = typeof(UserHome) },
                     new UserSidebarFlyoutMenuItem { Id = 4, Icon="icon_feed.png", Title = "Contact", TargetType = typeof(UserHome) },
                     new UserSidebarFlyoutMenuItem { Id = 5, Icon="icon_feed.png", Title = "Rate Us", TargetType = typeof(UserHome) },

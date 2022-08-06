@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MobileShopApp.LoginSystem
+namespace MobileShopApp.Views.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
@@ -33,7 +33,8 @@ namespace MobileShopApp.LoginSystem
             {
                 LoadingInd.IsRunning = true;
 
-                var check = (await App.firebaseDatabase.Child("Users").OnceAsync<Users>()).FirstOrDefault(x => x.Object.Email == txtEmail.Text && x.Object.Password == txtPass.Text && x.Object.UserType == "User");
+                var check = (await App.firebaseDatabase.Child("Users").OnceAsync<Users>()).FirstOrDefault(x => x.Object.Email == txtEmail.Text && x.Object.Password == txtPass.Text && x.Object.UserType == "Admin");
+
 
 
                 if (check == null)
@@ -44,8 +45,7 @@ namespace MobileShopApp.LoginSystem
                 }
                 else
                 {
-                    App.LoggedInUser = check.Object;
-                    App.Current.MainPage = new UserSidebar();
+                    App.Current.MainPage = new AdminSideBar();
                 }
 
             }
@@ -60,9 +60,6 @@ namespace MobileShopApp.LoginSystem
 
         }
 
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Register());
-        }
+       
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileShopApp.Views.Admin.Manage_Category"
+             x:Class="MobileShopApp.Views.Admin.Manage_Products"
              Title="Users List"
              >
     <ContentPage.Content>
@@ -11,7 +11,7 @@
             <ListView x:Name="DataList" ItemTapped="DataList_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell Text="{Binding Name}" Detail="{Binding Details}" ImageSource="{Binding Image}" />
+                        <ImageCell Text="{Binding ItemName}" Detail="{Binding ItemDetail}" ImageSource="{Binding ItemImage}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
